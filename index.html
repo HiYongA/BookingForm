@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숙소 예약</title>
+    <style>
+      /* 폰트 로드 */
+      @font-face {
+        font-family: "EASTARJET-Medium";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/EASTARJET-Medium.woff2")
+          format("woff2");
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      body {
+        font-family: "EASTARJET-Medium";
+        color: #fff;
+
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("img/img.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      header h1 {
+        margin: 30px;
+        text-align: center;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .form-box {
+        max-width: 400px;
+        border: 1px solid #ced4da;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 13px;
+      }
+
+      p {
+        padding: 0 20px 20px;
+      }
+
+      p span {
+        color: tomato;
+      }
+
+      p input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 5px;
+        border: 1px solid #ced4da;
+        background: transparent;
+        color: #fff;
+      }
+
+      p input::placeholder {
+        padding-left: 10px;
+        color: #fff;
+      }
+
+      .radio-btn {
+        margin: 0 20px;
+        border: 1px solid #ced4da;
+      }
+
+      input,
+      select,
+      button:focus {
+        outline: none; /* 포커스 효과 제거 */
+        border-color: #85929e;
+      }
+
+      .flex-box {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .flex-box label {
+        position: absolute;
+        top: -3px;
+      }
+
+      .flex-box input {
+        width: 160px;
+      }
+
+      .payment-box h2 {
+        padding: 50px 0 10px;
+      }
+
+      .agreement {
+        padding: 20px;
+      }
+
+      a {
+        color: #fff;
+        transition: color 0.3s ease; /* 호버 시 색상 변화를 위한 transition */
+      }
+
+      a:hover {
+        color: #85929e;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>숙소 예약</h1>
+    </header>
+
+    <main>
+      <form class="form-box">
+        <!-- 고객 정보 섹션 -->
+        <section>
+          <h2>고객님의 정보를 입력해 주세요</h2>
+
+          <p>
+            <label for="name"> 이름<span> *</span> </label>
+            <input type="text" id="name" name="name" required />
+          </p>
+          <p>
+            <label for="email"> 이메일<span> *</span> </label>
+            <input type="email" id="email" name="email" required />
+          </p>
+          <p>
+            <label for="phone"> 휴대폰번호<span> *</span> </label>
+            <input type="tel" id="phone" name="phone" required />
+          </p>
+        </section>
+
+        <fieldset class="radio-btn">
+          <legend>선호하는 객실</legend>
+          <input type="radio" id="nonsmoking" name="room" value="금연 객실" />
+          <label for="nonsmoking">금연 객실</label>
+          <input type="radio" id="smoking" name="room" value="흡연 가능 객실" />
+          <label for="smoking">흡연 가능 객실</label>
+        </fieldset>
+
+        <br />
+
+        <fieldset class="radio-btn">
+          <legend>선호하는 침대 구성</legend>
+          <input type="radio" id="double_bed" name="bed" value="더블 베드" />
+          <label for="double_bed">더블베드</label>
+          <input type="radio" id="twin_bed" name="bed" value="트윈베드" />
+          <label for="twin_bed">트윈베드</label>
+        </fieldset>
+
+        <!-- 결제 정보 섹션 -->
+        <section class="payment-box">
+          <h2>어떻게 결제하시겠어요?</h2>
+          <p>
+            <label for="card"> 결제 방법 선택<span> *</span> </label>
+            <select name="card" id="card">
+              <option value="Visa">Visa</option>
+              <option value="mc">MasterCard</option>
+              <option value="union">UnionPay</option>
+              <option value="amex">Amex</option>
+              <option value="jcb">JCB</option>
+            </select>
+          </p>
+          <p>
+            <label for="cardnumber"> 카드 번호<span> *</span> </label>
+            <input
+              maxlength="23"
+              type="tel"
+              id="cardnumber"
+              name="cardnumber"
+              required
+            />
+          </p>
+          <p>
+            <label for="holder"> 카드소지자 이름<span> *</span> </label>
+            <input type="text" id="holder" name="holder" required />
+          </p>
+
+          <div class="flex-box">
+            <p>
+              <label for="expirydate"> 유효기간<span> *</span> </label>
+              <input
+                maxlength="5"
+                type="text"
+                id="expirydate"
+                name="expirydate"
+                placeholder="MM/YY (월/년도)"
+                required
+              />
+            </p>
+            <p>
+              <label for="cvc"> CVC 코드<span> *</span> </label>
+              <input
+                maxlength="3"
+                type="password"
+                id="cvc"
+                name="cvc"
+                required
+              />
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <label for="agreement" class="agreement">
+            <input type="checkbox" id="agreement" name="agreement" required />
+
+            <a
+              href="https://www.agoda.com/ko-kr/info/privacy.html"
+              target="blank"
+              >개인정보 처리 방침</a
+            >
+            및
+            <a
+              href="https://www.agoda.com/ko-kr/info/termsofuse.html"
+              target="blank"
+              >이용약관</a
+            >
+            에 동의합니다.
+          </label>
+          <p>
+            <button type="submit">예약 완료</button>
+          </p>
+        </section>
+      </form>
+    </main>
+  </body>
+</html>
